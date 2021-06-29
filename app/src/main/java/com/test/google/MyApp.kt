@@ -1,9 +1,7 @@
 package com.test.google
 
 import android.app.Application
-import com.facebook.FacebookSdk
-import com.facebook.appevents.AppEventsLogger
-import com.test.google.utils.OverseasUtils
+import com.test.aggregatepayment.utils.OverseasUtils
 
 /**
  *
@@ -15,6 +13,6 @@ class MyApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        OverseasUtils.init(this)
+        com.test.aggregatepayment.utils.OverseasUtils.init(this)
     }
 }

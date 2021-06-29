@@ -1,0 +1,50 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation rootProject.ext.dependencies["junit"]
+    androidTestImplementation rootProject.ext.dependencies["ext_junit"]
+    implementation rootProject.ext.dependencies["espresso"]
+    implementation platform(rootProject.ext.dependencies["firebase"])
+    //google analytics
+    implementation rootProject.ext.dependencies["firebase-analytics"]
+    //facebook
+    implementation rootProject.ext.dependencies["facebook-android"]
+    //google 支付
+    implementation rootProject.ext.dependencies["play-services"]
+    //google 登录
+    implementation rootProject.ext.dependencies["firebase-auth"]
+    implementation rootProject.ext.dependencies["play-services-auth"]
+    //gson
+    implementation rootProject.ext.dependencies["converter-gson"]
+    implementation rootProject.ext.dependencies["billingclient"]
+}

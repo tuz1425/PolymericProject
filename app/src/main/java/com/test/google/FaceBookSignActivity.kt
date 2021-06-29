@@ -4,11 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.facebook.CallbackManager
 import com.google.firebase.auth.*
-import com.test.google.model.InformationModel
-import com.test.google.utils.FaceBookSign
-import com.test.google.utils.OverseasUtils
+import com.test.aggregatepayment.toJson
+import com.test.aggregatepayment.model.InformationModel
+import com.test.aggregatepayment.utils.FaceBookSign
+import com.test.aggregatepayment.utils.OverseasUtils
 
 /**
  *
@@ -20,16 +20,16 @@ class FaceBookSignActivity : AppCompatActivity() {
 
     private val tag = "FacebookLogin"
 
-    private var faceBuild: FaceBookSign? = null
+    private var faceBuild: com.test.aggregatepayment.utils.FaceBookSign? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.face_book_ac)
 
-        faceBuild = OverseasUtils.faceBuild().apply {
+        faceBuild = com.test.aggregatepayment.utils.OverseasUtils.faceBuild().apply {
             setReqListener(
                 this@FaceBookSignActivity,
-                InformationModel(faceLoginButton = findViewById(R.id.face_book_sign_in))
+                com.test.aggregatepayment.model.InformationModel(faceLoginButton = findViewById(R.id.face_book_sign_in))
             ) {
                 success {
                     Log.d(tag,"success 通过dsl回调更新ui")
