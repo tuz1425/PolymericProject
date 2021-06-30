@@ -7,8 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.*
 import com.test.aggregatepayment.toJson
 import com.test.aggregatepayment.model.InformationModel
-import com.test.aggregatepayment.utils.FaceBookSign
-import com.test.aggregatepayment.utils.OverseasUtils
+
 
 /**
  *
@@ -29,7 +28,7 @@ class FaceBookSignActivity : AppCompatActivity() {
         faceBuild = com.test.aggregatepayment.utils.OverseasUtils.faceBuild().apply {
             setReqListener(
                 this@FaceBookSignActivity,
-                com.test.aggregatepayment.model.InformationModel(faceLoginButton = findViewById(R.id.face_book_sign_in))
+                InformationModel(faceLoginButton = findViewById(R.id.face_book_sign_in))
             ) {
                 success {
                     Log.d(tag,"success 通过dsl回调更新ui")

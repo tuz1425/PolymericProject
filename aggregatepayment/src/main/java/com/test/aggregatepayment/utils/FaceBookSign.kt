@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.test.aggregatepayment.model.InformationModel
+import com.test.aggregatepayment.toJson
 import java.lang.RuntimeException
 
 /**
