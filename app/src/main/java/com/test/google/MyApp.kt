@@ -13,6 +13,6 @@ class MyApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        com.test.aggregatepayment.utils.OverseasUtils.init(this)
+        OverseasUtils.init(this)
     }
 }
