@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, GooglePaymentActivity::class.java))
         }
 
-
+        "cnm".plus("1")
 
     }
 }
