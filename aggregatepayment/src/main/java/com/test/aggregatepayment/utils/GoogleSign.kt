@@ -13,7 +13,6 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.test.aggregatepayment.model.InformationModel
-import java.lang.RuntimeException
 
 /**
  * @author lidexin
@@ -73,6 +72,7 @@ class GoogleSign {
                 firebaseAuthWithGoogle(account.idToken.toString())
             } catch (e: ApiException) {
                 Log.d(tag, "Google sign in failed", e)
+                callBack?.builder?.error?.invoke(Parameter.SIGN_IN_ERROR,"Google sign in failed $e")
             }
         }
     }

@@ -67,7 +67,7 @@ class FaceBookSign {
             override fun onCancel() {
                 Log.d(tag, "facebook:onCancel")
                 callBack?.builder?.error?.invoke(
-                    Parameter.FACE_BOOK_REGISTER_CANCEL,
+                    Parameter.REGISTER_CANCEL,
                     "facebook:onCancel"
                 )
             }
@@ -75,7 +75,7 @@ class FaceBookSign {
             override fun onError(error: FacebookException) {
                 Log.d(tag, "facebook:onError", error)
                 callBack?.builder?.error?.invoke(
-                    Parameter.FACE_BOOK_REGISTER_ERROR,
+                    Parameter.REGISTER_ERROR,
                     "facebook:onError=$error"
                 )
             }
@@ -94,7 +94,7 @@ class FaceBookSign {
                 } else {
                     Log.w(tag, "signInWithCredential:failure", task.exception)
                     callBack?.builder?.error?.invoke(
-                        Parameter.FACE_BOOK_SIGN_IN_ERROR,
+                        Parameter.SIGN_IN_ERROR,
                         "signInWithCredential:failure"
                     )
                 }
