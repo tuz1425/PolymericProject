@@ -24,3 +24,4 @@
 > GoogleAnalyticsUtils.statistics(keyString = "testKey", hashmap)</br>
 > 调用如上方法，注意keyString的长度不能小于1不能超过40字符长度</br>
 > 过滤log tag = GoogleAnalyticsUtils 能看见输出日志
+>
