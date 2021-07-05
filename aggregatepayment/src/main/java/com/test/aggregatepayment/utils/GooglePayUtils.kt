@@ -5,7 +5,6 @@ import android.content.Context
 import android.util.Log
 import com.android.billingclient.api.*
 import com.test.aggregatepayment.model.PurchaseModel
-import java.lang.RuntimeException
 
 /**
  *
@@ -64,6 +63,7 @@ object GooglePayUtils {
                         printLog(TAG, "Google payment link succeeded")
                     } else {
                         printLog(TAG, "${p0.responseCode}")
+                        callBack?.builder?.error?.invoke(p0.responseCode, "Link error")
                         isConnect = false
                     }
                 }
