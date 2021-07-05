@@ -34,8 +34,12 @@ object GooglePayUtils {
     private var skuDetail: SkuDetails? = null
 
     /** 初始化 */
-    fun init(context: Context) {
+    fun init(context: Context,listener: RequestListener.Builder.() -> Unit) {
         if (!hasInit) {
+            /** 初始化接口 */
+            callBack = RequestListener().apply {
+                registerListener(listener)
+            }
             /** 初始化BillingClient */
             billingClient =
                 BillingClient.newBuilder(context).enablePendingPurchases().setListener { p0, p1 ->

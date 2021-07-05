@@ -28,14 +28,22 @@ object GoogleOutsourcingUtils {
     private const val shippingCost = (90 * 1000000).toLong()
     private const val LOAD_PAYMENT_DATA_REQUEST_CODE = 991
 
+    /** 监听成功失败 */
+    private var callBack: RequestListener? = null
+
     /** 是否初始化过 */
     private var hasInit: Boolean = false
 
     private var mContext: Activity? = null
     private var mButton: View? = null
 
-    fun init(context: Activity, button: View) {
+
+    fun init(context: Activity, button: View,listener: RequestListener.Builder.() -> Unit) {
         if (!hasInit) {
+            /** 初始化接口 */
+            callBack = RequestListener().apply {
+                registerListener(listener)
+            }
             this.mContext = context
             this.mButton = button
             possiblyShowGooglePayButton()
@@ -89,7 +97,8 @@ object GoogleOutsourcingUtils {
             mButton?.visibility = View.VISIBLE
         } else {
             mButton?.visibility = View.GONE
-            Toast.makeText(mContext, "该设备google支付不可用", Toast.LENGTH_LONG).show();
+            Toast.makeText(mContext, "该设备google支付不可用", Toast.LENGTH_LONG).show()
+            //todo 回调状态
         }
     }
 

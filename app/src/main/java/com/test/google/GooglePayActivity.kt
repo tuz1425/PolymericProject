@@ -16,7 +16,9 @@ class GooglePayActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.gogole_play_ac)
 
-        GooglePayUtils.init(this)
+        GooglePayUtils.init(this){
+
+        }
         //todo 如果log 显示成功
         //todo 则调用 GooglePayUtils.isConnect() 来做下一步做的
 
