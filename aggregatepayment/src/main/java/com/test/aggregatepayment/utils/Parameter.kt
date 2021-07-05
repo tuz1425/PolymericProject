@@ -11,6 +11,9 @@ class Parameter {
         /** 登录失败 */
         const val SIGN_IN_ERROR = 1001
         const val GOOGLE_PAY_ERROR = 2001
+        const val FACE_BOOK_REGISTER_ERROR = 3001
+        const val FACE_BOOK_REGISTER_CANCEL = 3002
+        const val FACE_BOOK_SIGN_IN_ERROR = 3003
     }
 }
 

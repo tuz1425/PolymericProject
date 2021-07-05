@@ -3,7 +3,6 @@ package com.test.aggregatepayment.utils
 import android.app.Activity
 import android.content.Intent
 import android.util.Log
-import android.widget.Toast
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -17,7 +16,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.test.aggregatepayment.model.InformationModel
 import com.test.aggregatepayment.toJson
-import java.lang.RuntimeException
 
 /**
  * @author lidexin
@@ -55,7 +53,7 @@ class FaceBookSign {
     private fun build(model: InformationModel) {
         mAuth = FirebaseAuth.getInstance()
         mCallbackManager = CallbackManager.Factory.create()
-        if (model.faceLoginButton == null){
+        if (model.faceLoginButton == null) {
             throw RuntimeException("Initialize facebook button")
         }
         val loginButton: LoginButton = model.faceLoginButton!!
@@ -68,36 +66,50 @@ class FaceBookSign {
 
             override fun onCancel() {
                 Log.d(tag, "facebook:onCancel")
+                callBack?.builder?.error?.invoke(
+                    Parameter.FACE_BOOK_REGISTER_CANCEL,
+                    "facebook:onCancel"
+                )
             }
 
             override fun onError(error: FacebookException) {
                 Log.d(tag, "facebook:onError", error)
+                callBack?.builder?.error?.invoke(
+                    Parameter.FACE_BOOK_REGISTER_ERROR,
+                    "facebook:onError=$error"
+                )
             }
         })
     }
+
     private fun handleFacebookAccessToken(token: AccessToken) {
         Log.d(tag, "handleFacebookAccessToken:$token")
         val credential = FacebookAuthProvider.getCredential(token.token)
-        mAuth!!.signInWithCredential(credential).addOnCompleteListener(activity!!) { task ->
+        mAuth?.let {
+            it.signInWithCredential(credential).addOnCompleteListener(activity!!) { task ->
                 if (task.isSuccessful) {
                     Log.d(tag, "signInWithCredential:success")
                     val user = mAuth!!.currentUser
                     callBack?.builder?.success?.invoke(SuccessModel(faceUser = user))
                 } else {
                     Log.w(tag, "signInWithCredential:failure", task.exception)
-                    Toast.makeText(activity!!, "Authentication failed.", Toast.LENGTH_SHORT).show()
-                    callBack?.builder?.success?.invoke(null)
+                    callBack?.builder?.error?.invoke(
+                        Parameter.FACE_BOOK_SIGN_IN_ERROR,
+                        "signInWithCredential:failure"
+                    )
                 }
             }
+        }
     }
 
     /** activity回调处理 */
     fun setActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (mCallbackManager == null){
+        if (mCallbackManager == null) {
             throw RuntimeException("Please call facebook initialization method")
         }
         mCallbackManager?.onActivityResult(requestCode, resultCode, data)
     }
+
     /**
      * 删除用户
      * */
