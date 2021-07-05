@@ -49,12 +49,13 @@ object GooglePayUtils {
                         callBack?.builder?.error?.invoke(p0.responseCode, "User cancel")
                     } else {
                         printLog(TAG, "${p0.responseCode}:User error")
-                        callBack?.builder?.error?.invoke(p0.responseCode, "User cancel")
+                        callBack?.builder?.error?.invoke(p0.responseCode, "User error")
                     }
                 }.build()
             billingClient?.startConnection(object : BillingClientStateListener {
                 override fun onBillingServiceDisconnected() {
                     isConnect = false
+                    callBack?.builder?.error?.invoke(Parameter.ABNORMAL_OPERATION, "Abnormal operation")
                 }
 
                 override fun onBillingSetupFinished(p0: BillingResult) {
@@ -167,8 +168,8 @@ object GooglePayUtils {
     }
 
     private val acknowledgePurchaseResponseListener =
-        ConsumeResponseListener { _, _ ->
-
+        ConsumeResponseListener { res, str ->
+            printLog("acknowledge", "${res.responseCode} $str")
         }
 
     /** 输出log */

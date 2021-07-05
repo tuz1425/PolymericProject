@@ -17,6 +17,8 @@ class Parameter {
         const val DELETE_USER_SUCCESS = 4001
         /** 删除失败 */
         const val DELETE_USER_ERROR = 4002
+        /** 异常操作 */
+        const val ABNORMAL_OPERATION = 5000
     }
 }
 
