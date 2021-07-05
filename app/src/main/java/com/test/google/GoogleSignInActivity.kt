@@ -1,13 +1,13 @@
 package com.test.google
 
+import GoogleSign
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.*
-import com.test.aggregatepayment.toJson
 import com.test.aggregatepayment.model.InformationModel
-import com.test.aggregatepayment.utils.GoogleSign
+import com.test.aggregatepayment.toJson
 import com.test.aggregatepayment.utils.OverseasUtils
 
 /**
@@ -18,15 +18,15 @@ import com.test.aggregatepayment.utils.OverseasUtils
  */
 class GoogleSignInActivity : AppCompatActivity() {
     private val tag = "GoogleActivity"
-    private var googleBuild: com.test.aggregatepayment.utils.GoogleSign? = null
+    private var googleBuild: GoogleSign? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.google_sigin_ac)
 
-        googleBuild = com.test.aggregatepayment.utils.OverseasUtils.build().apply {
+        googleBuild = OverseasUtils.build().apply {
             setReqListener(this@GoogleSignInActivity,
-                com.test.aggregatepayment.model.InformationModel(getString(R.string.default_web_client_id))
+                InformationModel(getString(R.string.default_web_client_id))
             ) {
                 success {
                     Log.d(tag,"success 通过dsl回调更新ui")
