@@ -86,13 +86,9 @@ object GooglePayUtils {
     fun getSkuList(
         goodsId: String?,
         activity: Activity,
-        listener: RequestListener.Builder.() -> Unit
     ) {
         if (!isConnect) {
             throw RuntimeException("Please call the init method to initialize")
-        }
-        callBack = RequestListener().apply {
-            registerListener(listener)
         }
         skuList.clear()
         skuList.add(goodsId.toString())
