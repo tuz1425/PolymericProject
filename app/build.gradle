@@ -18,7 +18,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    //todo 正式发布后,需要删除此项.
     signingConfigs {
         release {
             keyAlias 'key0'
