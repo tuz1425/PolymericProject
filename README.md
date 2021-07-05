@@ -1,4 +1,4 @@
-# <h1>接入注意事项</h1></br>
+# <h1>接入注意事项</h1>
 # <h3>Google sign in</h3> 
 > 请调用 OverseasUtils.build().apply {
 >  setReqListener(this@GoogleSignInActivity,
@@ -27,6 +27,6 @@
 
 # <h3>code 参考  Parameter.kt</h3> 
 
-# <h3>RequestListener</h3></br>
+# <h3>RequestListener</h3>
 > 接口,Builder内,不用像“interface”全部重写,按需求复写方法.
 
