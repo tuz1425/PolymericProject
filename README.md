@@ -27,3 +27,6 @@
 
 # <h3>code 参考  Parameter.kt</h3> 
 
+# <h3>RequestListener</h3></br>
+> 接口,Builder内,不用像“interface”全部重写,按需求复写方法.
+
