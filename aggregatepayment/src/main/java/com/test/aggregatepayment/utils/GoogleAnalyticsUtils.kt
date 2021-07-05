@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.annotation.NonNull
+import androidx.annotation.RequiresPermission
 import androidx.annotation.Size
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.test.aggregatepayment.toJson
@@ -30,6 +31,7 @@ object GoogleAnalyticsUtils {
     private var hasInit: Boolean = false
     private var firebaseAnalytics: FirebaseAnalytics? = null
 
+    @RequiresPermission(allOf = ["android.permission.INTERNET", "android.permission.ACCESS_NETWORK_STATE", "android.permission.WAKE_LOCK"])
     fun init(context: Context) {
         if (!hasInit) {
             firebaseAnalytics = FirebaseAnalytics.getInstance(context)
