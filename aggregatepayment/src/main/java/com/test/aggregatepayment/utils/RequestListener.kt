@@ -17,14 +17,23 @@ class RequestListener {
 
     inner class Builder {
         internal var success: ((SuccessModel?) -> Unit)? = null
-        internal var error: ((Int,String) -> Unit)? = null
+        internal var error: ((Int, String) -> Unit)? = null
+        /** 删除账号 */
+        internal var deleteUserSuccess: ((Int) -> Unit)? = null
+
         /** 成功 */
         fun success(action: (SuccessModel?) -> Unit) {
             success = action
         }
+
         /** 失败 */
-        fun error(action: (Int,String) -> Unit) {
+        fun error(action: (Int, String) -> Unit) {
             error = action
+        }
+
+        /** 删除账号 @linked Parameter.kt*/
+        fun deleteUserSuccess(action: ((Int) -> Unit)) {
+            deleteUserSuccess = action
         }
     }
 }

@@ -113,7 +113,7 @@ class FaceBookSign {
     /**
      * 删除用户
      * */
-    fun deleteUser(): Boolean {
+    fun deleteUser() {
         if (Firebase.auth.currentUser != null) {
             //退出并删除
             Firebase.auth.signOut()
@@ -121,14 +121,15 @@ class FaceBookSign {
             Firebase.auth.currentUser?.let {
                 it.delete().addOnCompleteListener { task ->
                     if (task.isSuccessful) {
+                        callBack?.builder?.deleteUserSuccess?.invoke(Parameter.DELETE_USER_SUCCESS)
                         Log.d(tag, "user is delete")
                     } else {
+                        callBack?.builder?.deleteUserSuccess?.invoke(Parameter.DELETE_USER_ERROR)
                         Log.d(tag, "user not delete")
                     }
                 }
             }
         }
-        return true
     }
 
     /**

@@ -13,6 +13,10 @@ class Parameter {
         const val REGISTER_ERROR = 3001
         const val REGISTER_CANCEL = 3002
         const val SIGN_IN_ERROR = 3003
+        /** 删除成功 */
+        const val DELETE_USER_SUCCESS = 4001
+        /** 删除失败 */
+        const val DELETE_USER_ERROR = 4002
     }
 }
 
