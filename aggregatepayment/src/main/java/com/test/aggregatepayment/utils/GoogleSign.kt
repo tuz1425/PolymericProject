@@ -64,6 +64,7 @@ class GoogleSign {
 
     /** activity回调处理 */
     fun setActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        resultCode.let {  }
         if (requestCode == RequestParameter.SIGN_IN_CODE) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {

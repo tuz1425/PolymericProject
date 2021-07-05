@@ -4,7 +4,6 @@ import android.app.Application
 import android.util.Log
 import com.facebook.FacebookSdk
 import com.facebook.appevents.AppEventsLogger
-import java.lang.RuntimeException
 
 /**
  *初始化google 登录
@@ -19,6 +18,7 @@ object OverseasUtils {
     /** 是否初始化过 */
     private var hasInit: Boolean = false
 
+    @Suppress("DEPRECATION")
     fun init(application: Application) {
         if (!hasInit) {
             Log.d("OverseasUtils", "init success")

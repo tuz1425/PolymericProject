@@ -15,5 +15,11 @@ internal object GoogleManger {
         //todo 可以做二次 验证。
         //todo 可以在新起类 做实际操作.
         //todo call back 在config里面。
+        activity.let {
+
+        }
+        config.let {
+
+        }
     }
 }

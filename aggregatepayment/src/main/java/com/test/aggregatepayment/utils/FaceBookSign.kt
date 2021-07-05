@@ -49,7 +49,7 @@ class FaceBookSign {
             build(model)
         }
     }
-
+    @Suppress("DEPRECATION")
     private fun build(model: InformationModel) {
         mAuth = FirebaseAuth.getInstance()
         mCallbackManager = CallbackManager.Factory.create()
