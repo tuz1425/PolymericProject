@@ -48,7 +48,7 @@ class GoogleSign {
 
     /** 连接并调用登录 */
     private fun build(model: InformationModel) {
-        if (model.key.isEmpty() && model.key.length != 72) {
+        if (model.key.isEmpty() || model.key.length != 72) {
             throw RuntimeException("The client id cannot be empty or the length is less than 72")
         }
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
