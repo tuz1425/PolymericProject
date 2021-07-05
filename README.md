@@ -16,3 +16,13 @@
          )
 > 注意findViewById(R.id.face_book_sign_in) = 在xml中写好<com.facebook.login.widget.LoginButton>
 >在 onActivityResult中调用  faceBuild.setActivityResult(requestCode, resultCode, data)
+
+# google 自定义事件
+> 调用GoogleAnalyticsUtils.init(this) 方法。
+> val hashmap = hashMapOf<String,String>().apply {
+                 put("user", "10001")
+                 put("content", "test")
+                 put("type", "image")
+             }
+> GoogleAnalyticsUtils.statistics(keyString = "testKey", hashmap)
+>调用如上方法 注意keyString的长度不能小于1不能超过40字符长度
