@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TestGoogleDemmo</string>
+    <string name="app_name">PolymericProject</string>
     <string name="payments_show_name" translatable="false">已成功接收的付款数据 %s!</string>
     <string name="server_client_id">790739313549-t94bqgor2g003s6ua29g0577tr4d6k6k.apps.googleusercontent.com</string>
 </resources>

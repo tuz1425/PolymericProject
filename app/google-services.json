@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:790739313549:android:3fa8157efe00e6249ed3c4",
         "android_client_info": {
-          "package_name": "com.test.google"
+          "package_name": "com.tuz.polymeric"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "790739313549-t94bqgor2g003s6ua29g0577tr4d6k6k.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.test.google",
+            "package_name": "com.tuz.polymeric",
             "certificate_hash": "9e8d7e4f47f543f912203c712358689313ede804"
           }
         },
