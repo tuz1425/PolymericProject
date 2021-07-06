@@ -8,7 +8,7 @@ import com.google.firebase.auth.*
 import com.test.aggregatepayment.model.InformationModel
 import com.test.aggregatepayment.toJson
 import com.test.aggregatepayment.utils.FaceBookSign
-import com.test.aggregatepayment.utils.OverseasUtils
+import com.test.aggregatepayment.utils.SignInUtils
 
 
 /**
@@ -27,7 +27,7 @@ class FaceBookSignActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.face_book_ac)
 
-        faceBuild = OverseasUtils.faceBuild().apply {
+        faceBuild = SignInUtils.faceBuild().apply {
             setReqListener(
                 this@FaceBookSignActivity,
                 InformationModel(faceLoginButton = findViewById(R.id.face_book_sign_in))

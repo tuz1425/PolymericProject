@@ -1,7 +1,7 @@
 package com.test.google
 
 import android.app.Application
-import com.test.aggregatepayment.utils.OverseasUtils
+import com.test.aggregatepayment.utils.SignInUtils
 
 /**
  *
@@ -13,6 +13,6 @@ class MyApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        OverseasUtils.init(this)
+        SignInUtils.init(this)
     }
 }

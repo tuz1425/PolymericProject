@@ -8,7 +8,7 @@ import com.google.firebase.auth.*
 import com.test.aggregatepayment.model.InformationModel
 import com.test.aggregatepayment.toJson
 import com.test.aggregatepayment.utils.GoogleSign
-import com.test.aggregatepayment.utils.OverseasUtils
+import com.test.aggregatepayment.utils.SignInUtils
 
 /**
  *
@@ -24,7 +24,7 @@ class GoogleSignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.google_sigin_ac)
 
-        googleBuild = OverseasUtils.build().apply {
+        googleBuild = SignInUtils.googleBuild().apply {
             setReqListener(this@GoogleSignInActivity,
                 InformationModel(getString(R.string.default_web_client_id))
             ) {

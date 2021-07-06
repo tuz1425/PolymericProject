@@ -13,7 +13,7 @@ import com.facebook.appevents.AppEventsLogger
  *@email tuz1425@dingtalk.com
  *@date 2021/6/28
  */
-object OverseasUtils {
+object SignInUtils {
 
     /** 是否初始化过 */
     private var hasInit: Boolean = false
@@ -28,7 +28,7 @@ object OverseasUtils {
         }
     }
 
-    fun build(): GoogleSign {
+    fun googleBuild(): GoogleSign {
         if (!hasInit) {
             throw RuntimeException("Please call the init method to initialize")
         }
