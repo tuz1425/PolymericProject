@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PolymericProject">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.tuz.google.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,11 +43,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".GoogleSignInActivity" />
-        <activity android:name=".FaceBookSignActivity" />
-        <activity android:name=".GooglePayActivity" />
-        <activity android:name=".GoogleAnalyticsActivity" />
-        <activity android:name=".GooglePaymentActivity" />
+        <activity android:name="com.tuz.google.GoogleSignInActivity" />
+        <activity android:name="com.tuz.google.FaceBookSignActivity" />
+        <activity android:name="com.tuz.google.GooglePayActivity" />
+        <activity android:name="com.tuz.google.GoogleAnalyticsActivity" />
+        <activity android:name="com.tuz.google.GooglePaymentActivity" />
 
     </application>
 

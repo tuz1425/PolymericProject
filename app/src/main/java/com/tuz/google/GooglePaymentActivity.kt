@@ -1,7 +1,8 @@
-package com.tuz.polymeric
+package com.tuz.google
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.tuz.polymeric.R
 
 /**
  *

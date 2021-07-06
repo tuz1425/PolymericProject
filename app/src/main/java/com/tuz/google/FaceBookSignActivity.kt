@@ -1,4 +1,4 @@
-package com.tuz.polymeric
+package com.tuz.google
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,9 +6,11 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.*
 import com.tuz.aggregatepayment.model.InformationModel
+import com.tuz.aggregatepayment.model.UserInfoModel
 import com.tuz.aggregatepayment.toJson
 import com.tuz.aggregatepayment.utils.FaceBookSign
 import com.tuz.aggregatepayment.utils.SignInUtils
+import com.tuz.polymeric.R
 
 
 /**
@@ -48,7 +50,7 @@ class FaceBookSignActivity : AppCompatActivity() {
         faceBuild?.setActivityResult(requestCode, resultCode, data)
     }
 
-    private fun updateUI(user: FirebaseUser?) {
+    private fun updateUI(user: UserInfoModel?) {
         Log.d(tag, "updateUI ${user?.toJson()}")
     }
 

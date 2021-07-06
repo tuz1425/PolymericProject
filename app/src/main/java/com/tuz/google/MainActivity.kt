@@ -1,9 +1,10 @@
-package com.tuz.polymeric
+package com.tuz.google
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.tuz.polymeric.R
 
 /**
  * 首页

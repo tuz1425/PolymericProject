@@ -40,7 +40,7 @@ class GoogleSign {
         }
         this.activity = activity
         if (Firebase.auth.currentUser != null) {
-            callBack?.builder?.success?.invoke(SuccessModel(googleUser = Firebase.auth.currentUser))
+            callBack?.builder?.success?.invoke(SuccessModel(firebaseUser = Firebase.auth.currentUser))
         } else {
             build(model)
         }
@@ -66,8 +66,8 @@ class GoogleSign {
     fun setActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         resultCode.let {  }
         if (requestCode == RequestParameter.SIGN_IN_CODE) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
+                val task = GoogleSignIn.getSignedInAccountFromIntent(data)
                 val account = task.getResult(ApiException::class.java)
                 Log.d(tag, "firebaseAuthWithGoogle:" + account!!.id)
                 firebaseAuthWithGoogle(account.idToken.toString())
@@ -89,7 +89,7 @@ class GoogleSign {
                 if (task.isSuccessful) {
                     Log.d(tag, "signInWithCredential:success")
                     val user = mAuth!!.currentUser
-                    callBack?.builder?.success?.invoke(SuccessModel(googleUser = user))
+                    callBack?.builder?.success?.invoke(SuccessModel(firebaseUser = user))
                 } else {
                     Log.d(tag, "signInWithCredential:failure", task.exception)
                     callBack?.builder?.error?.invoke(

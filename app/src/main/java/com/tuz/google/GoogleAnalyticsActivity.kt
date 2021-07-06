@@ -1,9 +1,10 @@
-package com.tuz.polymeric
+package com.tuz.google
 
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.tuz.aggregatepayment.utils.GoogleAnalyticsUtils
+import com.tuz.polymeric.R
 
 /**
  * 文献参考

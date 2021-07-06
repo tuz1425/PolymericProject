@@ -38,10 +38,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     implementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation platform('com.google.firebase:firebase-bom:28.1.0')
-    //google analytics
-    implementation 'com.google.firebase:firebase-analytics-ktx'
+
     //facebook
-    implementation 'com.facebook.android:facebook-android-sdk:[8,9)'
+    api 'com.facebook.android:facebook-android-sdk:[8,9)'
     //google 支付
     implementation 'com.google.android.gms:play-services-wallet:18.1.2'
     //google 登录
@@ -50,4 +49,8 @@ dependencies {
     //gson
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.android.billingclient:billing:4.0.0'
+
+    //google analytics
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-auth'
 }

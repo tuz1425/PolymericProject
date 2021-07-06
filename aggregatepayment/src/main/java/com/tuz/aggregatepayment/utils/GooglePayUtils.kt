@@ -163,7 +163,9 @@ object GooglePayUtils {
             purchaseModel.signature = purchase.signature
             purchaseModel.sku = purchase.skus[0]
             /** 返回调用者 */
-            callBack?.builder?.success?.invoke(SuccessModel(purchase = purchaseModel))
+            callBack?.builder?.success?.invoke(SuccessModel().apply {
+                myPurchase = purchaseModel
+            })
         }
     }
 

@@ -44,7 +44,7 @@ class FaceBookSign {
         }
         this.activity = activity
         if (Firebase.auth.currentUser != null) {
-            callBack?.builder?.success?.invoke(SuccessModel(faceUser = Firebase.auth.currentUser))
+            callBack?.builder?.success?.invoke(SuccessModel(firebaseUser = Firebase.auth.currentUser))
         } else {
             build(model)
         }
@@ -90,7 +90,7 @@ class FaceBookSign {
                 if (task.isSuccessful) {
                     Log.d(tag, "signInWithCredential:success")
                     val user = mAuth!!.currentUser
-                    callBack?.builder?.success?.invoke(SuccessModel(faceUser = user))
+                    callBack?.builder?.success?.invoke(SuccessModel(firebaseUser = user))
                 } else {
                     Log.w(tag, "signInWithCredential:failure", task.exception)
                     callBack?.builder?.error?.invoke(

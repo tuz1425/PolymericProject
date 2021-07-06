@@ -51,7 +51,7 @@ android {
 }
 
 dependencies {
-
+    implementation fileTree(dir: 'libs',includes: ['*.jar'])
     implementation rootProject.ext.dependencies["kotlin"]
     implementation rootProject.ext.dependencies["core-ktx"]
     implementation rootProject.ext.dependencies["appcompat"]
@@ -62,9 +62,9 @@ dependencies {
     implementation rootProject.ext.dependencies["ext_junit"]
     implementation rootProject.ext.dependencies["espresso"]
 
-    implementation rootProject.ext.dependencies["firebase-auth"]
+    //implementation rootProject.ext.dependencies["firebase-auth"]
     //facebook
-    implementation rootProject.ext.dependencies["facebook-android"]
+    //implementation rootProject.ext.dependencies["facebook-android"]
 
     implementation project(':aggregatepayment')
 }
