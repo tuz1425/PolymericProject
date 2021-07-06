@@ -66,5 +66,5 @@ dependencies {
     //facebook
     //implementation rootProject.ext.dependencies["facebook-android"]
 
-    implementation project(':aggregatepayment')
+    api project(':aggregatepayment')
 }
