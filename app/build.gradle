@@ -1,8 +1,8 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.github.dcendents.android-maven'
-group = 'com.github.tuz1425'
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'com.google.gms.google-services'
+}
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
