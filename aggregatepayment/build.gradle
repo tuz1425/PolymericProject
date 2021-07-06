@@ -37,20 +37,20 @@ dependencies {
     implementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     implementation 'androidx.test.espresso:espresso-core:3.3.0'
-    implementation platform('com.google.firebase:firebase-bom:28.1.0')
 
+    api platform('com.google.firebase:firebase-bom:28.1.0')
     //facebook
     api 'com.facebook.android:facebook-android-sdk:[8,9)'
     //google 支付
-    implementation 'com.google.android.gms:play-services-wallet:18.1.2'
+    api 'com.google.android.gms:play-services-wallet:18.1.2'
     //google 登录
-    implementation 'com.google.firebase:firebase-auth-ktx'
-    implementation 'com.google.android.gms:play-services-auth:19.0.0'
+    api 'com.google.firebase:firebase-auth-ktx'
+    api 'com.google.android.gms:play-services-auth:19.0.0'
     //gson
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.android.billingclient:billing:4.0.0'
+    api 'com.squareup.retrofit2:converter-gson:2.9.0'
+    api 'com.android.billingclient:billing:4.0.0'
 
     //google analytics
-    implementation 'com.google.firebase:firebase-analytics-ktx'
-    implementation 'com.google.firebase:firebase-auth'
+    api 'com.google.firebase:firebase-analytics-ktx'
+    api 'com.google.firebase:firebase-auth'
 }
