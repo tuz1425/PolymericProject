@@ -33,20 +33,21 @@ android {
 }
 
 dependencies {
-    implementation rootProject.ext.dependencies["junit"]
-    androidTestImplementation rootProject.ext.dependencies["ext_junit"]
-    implementation rootProject.ext.dependencies["espresso"]
-    implementation platform(rootProject.ext.dependencies["firebase"])
+    //noinspection GradleDynamicVersion
+    implementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    implementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation platform('com.google.firebase:firebase-bom:28.1.0')
     //google analytics
-    implementation rootProject.ext.dependencies["firebase-analytics"]
+    implementation 'com.google.firebase:firebase-analytics-ktx'
     //facebook
-    implementation rootProject.ext.dependencies["facebook-android"]
+    implementation 'com.facebook.android:facebook-android-sdk:[8,9)'
     //google 支付
-    implementation rootProject.ext.dependencies["play-services"]
+    implementation 'com.google.android.gms:play-services-wallet:18.1.2'
     //google 登录
-    implementation rootProject.ext.dependencies["firebase-auth"]
-    implementation rootProject.ext.dependencies["play-services-auth"]
+    implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
     //gson
-    implementation rootProject.ext.dependencies["converter-gson"]
-    implementation rootProject.ext.dependencies["billingclient"]
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.android.billingclient:billing:4.0.0'
 }
