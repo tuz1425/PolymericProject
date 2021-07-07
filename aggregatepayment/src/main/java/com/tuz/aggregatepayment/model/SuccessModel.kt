@@ -1,8 +1,6 @@
-package com.tuz.aggregatepayment.utils
+package com.tuz.aggregatepayment.model
 
 import com.google.firebase.auth.FirebaseUser
-import com.tuz.aggregatepayment.model.PurchaseModel
-import com.tuz.aggregatepayment.model.UserInfoModel
 
 /**
  *

@@ -8,7 +8,7 @@ import com.google.firebase.auth.MultiFactor
 import com.google.firebase.auth.UserInfo
 
 /**
- *
+ *二次封装FirebaseUser
  *@author lidexin
  *@email tuz1425@dingtalk.com
  *@date 2021/7/6

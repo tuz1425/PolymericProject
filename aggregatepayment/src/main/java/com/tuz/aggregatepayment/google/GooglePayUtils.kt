@@ -1,10 +1,13 @@
-package com.tuz.aggregatepayment.utils
+package com.tuz.aggregatepayment.google
 
 import android.app.Activity
 import android.content.Context
-import android.util.Log
 import com.android.billingclient.api.*
 import com.tuz.aggregatepayment.model.PurchaseModel
+import com.tuz.aggregatepayment.model.SuccessModel
+import com.tuz.aggregatepayment.utils.Logger
+import com.tuz.aggregatepayment.utils.Parameter
+import com.tuz.aggregatepayment.utils.RequestListener
 
 /**
  *
@@ -13,12 +16,6 @@ import com.tuz.aggregatepayment.model.PurchaseModel
  *@date 2021/6/29
  */
 object GooglePayUtils {
-    /** log */
-    private const val TAG = "GooglePayUtils"
-
-    /** debug log */
-    private var hasLog: Boolean = false
-
     /** 是否初始化过 */
     private var hasInit: Boolean = false
 
@@ -49,10 +46,10 @@ object GooglePayUtils {
                         }
                     } else if (p0.responseCode == BillingClient.BillingResponseCode.USER_CANCELED) {
                         // 处理由用户取消采购流引起的错误。
-                        printLog(TAG, "${p0.responseCode}:User cancel")
+                        Logger.d("${p0.responseCode}:User cancel")
                         callBack?.builder?.error?.invoke(p0.responseCode, "User cancel")
                     } else {
-                        printLog(TAG, "${p0.responseCode}:User error")
+                        Logger.d("${p0.responseCode}:User error")
                         callBack?.builder?.error?.invoke(p0.responseCode, "User error")
                     }
                 }.build()
@@ -65,9 +62,9 @@ object GooglePayUtils {
                 override fun onBillingSetupFinished(p0: BillingResult) {
                     if (p0.responseCode == BillingClient.BillingResponseCode.OK) {
                         isConnect = true
-                        printLog(TAG, "Google payment link succeeded")
+                        Logger.d("Google payment link succeeded")
                     } else {
-                        printLog(TAG, "${p0.responseCode}")
+                        Logger.d("${p0.responseCode}")
                         callBack?.builder?.error?.invoke(p0.responseCode, "Link error")
                         isConnect = false
                     }
@@ -75,11 +72,6 @@ object GooglePayUtils {
             })
             hasInit = true
         }
-    }
-
-    /** debug 开关 */
-    fun setDebug(boolean: Boolean) {
-        hasLog = boolean
     }
 
     /** 内购 */
@@ -102,7 +94,7 @@ object GooglePayUtils {
                     //查到商品去支付
                     googlePay(activity)
                 } else {
-                    printLog("error", "No product information found")
+                    Logger.d("No product information found")
                     callBack?.builder?.error?.invoke(
                         Parameter.GOOGLE_PAY_ERROR,
                         "Current region does not support Google payments"
@@ -129,7 +121,7 @@ object GooglePayUtils {
             .build()
         val responseCode = billingClient!!.launchBillingFlow(activity, flowParams).responseCode
         if (responseCode != 0) {
-            printLog(TAG, "$responseCode:Current region does not support Google payments")
+            Logger.d("$responseCode:Current region does not support Google payments")
             callBack?.builder?.error?.invoke(
                 responseCode,
                 "Current region does not support Google payments"
@@ -171,13 +163,6 @@ object GooglePayUtils {
 
     private val acknowledgePurchaseResponseListener =
         ConsumeResponseListener { res, str ->
-            printLog("acknowledge", "${res.responseCode} $str")
+            Logger.d("acknowledge", "${res.responseCode} $str")
         }
-
-    /** 输出log */
-    private fun printLog(keyString: String, valueJson: String?) {
-        if (!hasLog) {
-            Log.d(TAG, "输出结果:\nkey=$keyString\nvalue=$valueJson")
-        }
-    }
 }

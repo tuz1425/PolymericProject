@@ -1,9 +1,11 @@
-package com.tuz.aggregatepayment.utils
+package com.tuz.aggregatepayment
 
 import android.app.Application
-import android.util.Log
 import com.facebook.FacebookSdk
 import com.facebook.appevents.AppEventsLogger
+import com.tuz.aggregatepayment.facebook.FaceBookSign
+import com.tuz.aggregatepayment.google.GoogleSign
+import com.tuz.aggregatepayment.utils.Logger
 
 /**
  *初始化google 登录
@@ -21,7 +23,7 @@ object SignInUtils {
     @Suppress("DEPRECATION")
     fun init(application: Application) {
         if (!hasInit) {
-            Log.d("OverseasUtils", "init success")
+            Logger.d("OverseasUtils  init success")
             FacebookSdk.sdkInitialize(application)
             AppEventsLogger.activateApp(application)
             hasInit = true

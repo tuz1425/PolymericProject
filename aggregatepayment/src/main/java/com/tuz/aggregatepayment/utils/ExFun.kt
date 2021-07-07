@@ -1,8 +1,8 @@
 package com.tuz.aggregatepayment
 
-import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
+import com.tuz.aggregatepayment.utils.Logger
 
 /**
  *
@@ -20,9 +20,9 @@ fun Any.toJson(): String? {
     try {
         return Gson().toJson(this)
     } catch (e: JsonSyntaxException) {
-        Log.d("json",e.message.toString())
+        Logger.d("转换json异常:${e.message.toString()}")
     } catch (e: Exception) {
-        Log.d("json",e.message.toString())
+        Logger.d("转换json异常:${e.message.toString()}")
     }
     return null
 }

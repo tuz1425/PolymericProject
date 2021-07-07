@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tuz.aggregatepayment
+package com.tuz.aggregatepayment.utils
 
 import com.google.android.gms.wallet.WalletConstants
 

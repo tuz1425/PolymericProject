@@ -1,8 +1,9 @@
-package com.tuz.aggregatepayment
+package com.tuz.aggregatepayment.google
 
 import android.app.Activity
 import com.google.android.gms.wallet.PaymentsClient
 import com.google.android.gms.wallet.Wallet
+import com.tuz.aggregatepayment.utils.Constants
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject

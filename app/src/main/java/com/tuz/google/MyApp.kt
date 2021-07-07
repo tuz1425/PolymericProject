@@ -1,7 +1,7 @@
 package com.tuz.polymeric
 
 import android.app.Application
-import com.tuz.aggregatepayment.utils.SignInUtils
+import com.tuz.aggregatepayment.SignInUtils
 
 /**
  *

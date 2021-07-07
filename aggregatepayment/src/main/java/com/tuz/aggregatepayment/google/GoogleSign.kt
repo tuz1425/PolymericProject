@@ -1,8 +1,7 @@
-package com.tuz.aggregatepayment.utils
+package com.tuz.aggregatepayment.google
 
 import android.app.Activity
 import android.content.Intent
-import android.util.Log
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -13,6 +12,11 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.tuz.aggregatepayment.model.InformationModel
+import com.tuz.aggregatepayment.model.SuccessModel
+import com.tuz.aggregatepayment.utils.Logger
+import com.tuz.aggregatepayment.utils.Parameter
+import com.tuz.aggregatepayment.utils.RequestListener
+import com.tuz.aggregatepayment.utils.RequestParameter
 
 /**
  * @author lidexin
@@ -20,8 +24,6 @@ import com.tuz.aggregatepayment.model.InformationModel
  * @date 2021/6/28
  */
 class GoogleSign {
-    private val tag = "GoogleSign"
-
     private var mAuth: FirebaseAuth? = null
     private var mGoogleSignInClient: GoogleSignInClient? = null
     private var activity: Activity? = null
@@ -69,10 +71,10 @@ class GoogleSign {
             try {
                 val task = GoogleSignIn.getSignedInAccountFromIntent(data)
                 val account = task.getResult(ApiException::class.java)
-                Log.d(tag, "firebaseAuthWithGoogle:" + account!!.id)
+                Logger.d("firebaseAuthWithGoogle:" + account!!.id)
                 firebaseAuthWithGoogle(account.idToken.toString())
             } catch (e: ApiException) {
-                Log.d(tag, "Google sign in failed", e)
+                Logger.d("Google sign in failed $e")
                 callBack?.builder?.error?.invoke(Parameter.SIGN_IN_ERROR,"Google sign in failed $e")
             }
         }
@@ -87,11 +89,11 @@ class GoogleSign {
         mAuth!!.signInWithCredential(credential)
             .addOnCompleteListener(activity!!) { task ->
                 if (task.isSuccessful) {
-                    Log.d(tag, "signInWithCredential:success")
+                    Logger.d("signInWithCredential:success")
                     val user = mAuth!!.currentUser
                     callBack?.builder?.success?.invoke(SuccessModel(firebaseUser = user))
                 } else {
-                    Log.d(tag, "signInWithCredential:failure", task.exception)
+                    Logger.d("signInWithCredential:failure  ${task.exception}")
                     callBack?.builder?.error?.invoke(
                         Parameter.SIGN_IN_ERROR,
                         task.exception.toString()
@@ -112,10 +114,10 @@ class GoogleSign {
                 it.delete().addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         callBack?.builder?.deleteUserSuccess?.invoke(Parameter.DELETE_USER_SUCCESS)
-                        Log.d(tag, "user is delete")
+                        Logger.d("user is delete")
                     } else {
                         callBack?.builder?.deleteUserSuccess?.invoke(Parameter.DELETE_USER_ERROR)
-                        Log.d(tag, "user not delete")
+                        Logger.d("user not delete")
                     }
                 }
             }

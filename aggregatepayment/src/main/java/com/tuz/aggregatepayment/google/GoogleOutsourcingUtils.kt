@@ -1,4 +1,4 @@
-package com.tuz.aggregatepayment.utils
+package com.tuz.aggregatepayment.google
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -9,8 +9,8 @@ import android.view.View
 import android.widget.Toast
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.wallet.*
-import com.tuz.aggregatepayment.GooglePaymentsUtil
-import com.tuz.aggregatepayment.microsToString
+import com.tuz.aggregatepayment.utils.Logger
+import com.tuz.aggregatepayment.utils.RequestListener
 import org.json.JSONException
 import org.json.JSONObject
 import kotlin.math.roundToLong
@@ -23,7 +23,6 @@ import kotlin.math.roundToLong
  */
 @SuppressLint("StaticFieldLeak")
 object GoogleOutsourcingUtils {
-    private const val TAG = "GoogleOutsourcingUtils"
     private lateinit var paymentsClient: PaymentsClient
     private const val shippingCost = (90 * 1000000).toLong()
     private const val LOAD_PAYMENT_DATA_REQUEST_CODE = 991
@@ -44,8 +43,8 @@ object GoogleOutsourcingUtils {
             callBack = RequestListener().apply {
                 registerListener(listener)
             }
-            this.mContext = context
-            this.mButton = button
+            mContext = context
+            mButton = button
             possiblyShowGooglePayButton()
         }
     }
@@ -57,7 +56,7 @@ object GoogleOutsourcingUtils {
                 when (resultCode) {
                     Activity.RESULT_OK ->
                         data?.let { intent ->
-                            PaymentData.getFromIntent(intent)?.let(::handlePaymentSuccess)
+                            PaymentData.getFromIntent(intent)?.let(GoogleOutsourcingUtils::handlePaymentSuccess)
                         }
                     Activity.RESULT_CANCELED -> {
                     }
@@ -82,9 +81,9 @@ object GoogleOutsourcingUtils {
         val task = paymentsClient.isReadyToPay(request)
         task.addOnCompleteListener { completedTask ->
             try {
-                completedTask.getResult(ApiException::class.java)?.let(::setGooglePayAvailable)
+                completedTask.getResult(ApiException::class.java)?.let(GoogleOutsourcingUtils::setGooglePayAvailable)
             } catch (exception: ApiException) {
-                Log.d("isReadyToPay failed", exception.toString())
+                Logger.d("isReadyToPay failed $exception")
             }
         }
     }
@@ -113,7 +112,7 @@ object GoogleOutsourcingUtils {
 
         val paymentDataRequestJson = GooglePaymentsUtil.getPaymentDataRequest(price)
         if (paymentDataRequestJson == null) {
-            Log.e("RequestPayment", "无法获取支付数据")
+            Logger.d("RequestPayment 无法获取支付数据")
             return
         }
         val request = PaymentDataRequest.fromJson(paymentDataRequestJson.toString())
@@ -159,7 +158,7 @@ object GoogleOutsourcingUtils {
             }
             val billingName = paymentMethodData.getJSONObject("info")
                 .getJSONObject("billingAddress").getString("name")
-            Log.d("BillingName", billingName)
+            Logger.d("BillingName $billingName")
 
             //Toast.makeText(
             //    this,
@@ -168,11 +167,9 @@ object GoogleOutsourcingUtils {
             //).show()
 
             // Logging token string.
-            Log.d(
-                "GooglePaymentToken", paymentMethodData
-                    .getJSONObject("tokenizationData")
-                    .getString("token")
-            )
+            Logger.d("GooglePaymentToken", paymentMethodData
+                .getJSONObject("tokenizationData")
+                .getString("token"))
 
         } catch (e: JSONException) {
             Log.e("handlePaymentSuccess", "Error: $e")
@@ -180,8 +177,6 @@ object GoogleOutsourcingUtils {
     }
 
     private fun handleError(statusCode: Int) {
-        Log.w(TAG, String.format("Error code: %d", statusCode))
+        Logger.w(String.format("Error code: %d", statusCode))
     }
-
-
 }

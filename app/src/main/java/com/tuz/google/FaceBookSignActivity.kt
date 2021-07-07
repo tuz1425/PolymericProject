@@ -5,11 +5,11 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.*
+import com.tuz.aggregatepayment.SignInUtils
+import com.tuz.aggregatepayment.facebook.FaceBookSign
 import com.tuz.aggregatepayment.model.InformationModel
 import com.tuz.aggregatepayment.model.UserInfoModel
 import com.tuz.aggregatepayment.toJson
-import com.tuz.aggregatepayment.utils.FaceBookSign
-import com.tuz.aggregatepayment.utils.SignInUtils
 import com.tuz.polymeric.R
 
 

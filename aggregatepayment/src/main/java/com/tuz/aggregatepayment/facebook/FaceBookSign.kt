@@ -1,8 +1,7 @@
-package com.tuz.aggregatepayment.utils
+package com.tuz.aggregatepayment.facebook
 
 import android.app.Activity
 import android.content.Intent
-import android.util.Log
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -15,7 +14,11 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.tuz.aggregatepayment.model.InformationModel
+import com.tuz.aggregatepayment.model.SuccessModel
 import com.tuz.aggregatepayment.toJson
+import com.tuz.aggregatepayment.utils.Logger
+import com.tuz.aggregatepayment.utils.Parameter
+import com.tuz.aggregatepayment.utils.RequestListener
 
 /**
  * @author lidexin
@@ -23,8 +26,6 @@ import com.tuz.aggregatepayment.toJson
  * @date 2021/6/28
  */
 class FaceBookSign {
-    private val tag = "FaceBookSign"
-
     private var mAuth: FirebaseAuth? = null
     private var mCallbackManager: CallbackManager? = null
 
@@ -60,12 +61,12 @@ class FaceBookSign {
         loginButton.setReadPermissions("email", "public_profile")
         loginButton.registerCallback(mCallbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
-                Log.d(tag, "facebook:onSuccess:${loginResult.toJson()}")
+                Logger.d("facebook:onSuccess:${loginResult.toJson()}")
                 handleFacebookAccessToken(loginResult.accessToken)
             }
 
             override fun onCancel() {
-                Log.d(tag, "facebook:onCancel")
+                Logger.d( "facebook:onCancel")
                 callBack?.builder?.error?.invoke(
                     Parameter.REGISTER_CANCEL,
                     "facebook:onCancel"
@@ -73,7 +74,7 @@ class FaceBookSign {
             }
 
             override fun onError(error: FacebookException) {
-                Log.d(tag, "facebook:onError", error)
+                Logger.d( "facebook:onError $error")
                 callBack?.builder?.error?.invoke(
                     Parameter.REGISTER_ERROR,
                     "facebook:onError=$error"
@@ -83,16 +84,16 @@ class FaceBookSign {
     }
 
     private fun handleFacebookAccessToken(token: AccessToken) {
-        Log.d(tag, "handleFacebookAccessToken:$token")
+        Logger.d( "handleFacebookAccessToken:$token")
         val credential = FacebookAuthProvider.getCredential(token.token)
         mAuth?.let {
             it.signInWithCredential(credential).addOnCompleteListener(activity!!) { task ->
                 if (task.isSuccessful) {
-                    Log.d(tag, "signInWithCredential:success")
+                    Logger.d("signInWithCredential:success")
                     val user = mAuth!!.currentUser
                     callBack?.builder?.success?.invoke(SuccessModel(firebaseUser = user))
                 } else {
-                    Log.w(tag, "signInWithCredential:failure", task.exception)
+                    Logger.d("signInWithCredential:failure ${task.exception}")
                     callBack?.builder?.error?.invoke(
                         Parameter.SIGN_IN_ERROR,
                         "signInWithCredential:failure"
@@ -122,10 +123,10 @@ class FaceBookSign {
                 it.delete().addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         callBack?.builder?.deleteUserSuccess?.invoke(Parameter.DELETE_USER_SUCCESS)
-                        Log.d(tag, "user is delete")
+                        Logger.d("user is delete")
                     } else {
                         callBack?.builder?.deleteUserSuccess?.invoke(Parameter.DELETE_USER_ERROR)
-                        Log.d(tag, "user not delete")
+                        Logger.d("user not delete")
                     }
                 }
             }

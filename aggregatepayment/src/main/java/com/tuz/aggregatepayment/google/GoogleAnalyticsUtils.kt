@@ -1,13 +1,13 @@
-package com.tuz.aggregatepayment.utils
+package com.tuz.aggregatepayment.google
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.annotation.NonNull
 import androidx.annotation.RequiresPermission
 import androidx.annotation.Size
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.tuz.aggregatepayment.toJson
+import com.tuz.aggregatepayment.utils.Logger
 
 /**
  *
@@ -21,11 +21,6 @@ import com.tuz.aggregatepayment.toJson
  * adb logcat -v time -s FA FA-SVC
  */
 object GoogleAnalyticsUtils {
-    /** log */
-    private const val TAG = "GoogleAnalyticsUtils"
-
-    /** debug log */
-    private var hasLog: Boolean = false
 
     /** 是否初始化过 */
     private var hasInit: Boolean = false
@@ -39,11 +34,6 @@ object GoogleAnalyticsUtils {
         }
     }
 
-    /** debug 开关 */
-    fun setDebug(boolean: Boolean) {
-        hasLog = boolean
-    }
-
     /** 统计埋点 */
     fun statistics(
         @NonNull @Size(min = 1L, max = 40L) keyString: String,
@@ -53,7 +43,7 @@ object GoogleAnalyticsUtils {
             throw RuntimeException("Please call the init method to initialize")
         }
         if (keyString.isEmpty() || hashMap.isEmpty()) {
-            printLog("error","key或者参数不能为空")
+            Logger.d("key或者参数不能为空")
             return
         }
         val bundle = Bundle()
@@ -63,13 +53,6 @@ object GoogleAnalyticsUtils {
             bundle.putString(key, value)
         }
         firebaseAnalytics?.logEvent(keyString, bundle)
-        printLog(keyString, hashMap.toJson())
-    }
-
-    /** 输出log */
-    private fun printLog(keyString: String, valueJson: String?) {
-        if (!hasLog) {
-            Log.d(TAG, "输出结果:\nkey=$keyString\nvalue=$valueJson")
-        }
+        Logger.d("key$keyString \n json${hashMap.toJson()}")
     }
 }

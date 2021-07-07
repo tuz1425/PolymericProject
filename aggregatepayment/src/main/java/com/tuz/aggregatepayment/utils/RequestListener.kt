@@ -1,5 +1,7 @@
 package com.tuz.aggregatepayment.utils
 
+import com.tuz.aggregatepayment.model.SuccessModel
+
 /**
  *登录成功失败接口
  *@author lidexin
