@@ -9,7 +9,7 @@ import com.tuz.aggregatepayment.SignInUtils
 import com.tuz.aggregatepayment.facebook.FaceBookSign
 import com.tuz.aggregatepayment.model.InformationModel
 import com.tuz.aggregatepayment.model.UserInfoModel
-import com.tuz.aggregatepayment.toJson
+import com.tuz.aggregatepayment.utils.toJson
 import com.tuz.polymeric.R
 
 

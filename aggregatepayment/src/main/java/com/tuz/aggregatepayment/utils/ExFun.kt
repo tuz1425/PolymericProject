@@ -1,8 +1,7 @@
-package com.tuz.aggregatepayment
+package com.tuz.aggregatepayment.utils
 
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
-import com.tuz.aggregatepayment.utils.Logger
 
 /**
  *

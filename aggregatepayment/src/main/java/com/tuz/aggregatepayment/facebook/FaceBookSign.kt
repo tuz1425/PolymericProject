@@ -15,10 +15,10 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.tuz.aggregatepayment.model.InformationModel
 import com.tuz.aggregatepayment.model.SuccessModel
-import com.tuz.aggregatepayment.toJson
 import com.tuz.aggregatepayment.utils.Logger
 import com.tuz.aggregatepayment.utils.Parameter
 import com.tuz.aggregatepayment.utils.RequestListener
+import com.tuz.aggregatepayment.utils.toJson
 
 /**
  * @author lidexin

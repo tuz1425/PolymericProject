@@ -4,9 +4,9 @@ import android.util.Log
 import com.tuz.aggregatepayment.BuildConfig
 
 /**
- * @author: liuzhenfeng
- * @function:
- * @date: 2019-05-27  16:48
+ *@author lidexin
+ *@email tuz1425@dingtalk.com
+ *@date 2021/7/7
  */
 internal object Logger {
 
