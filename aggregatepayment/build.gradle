@@ -55,5 +55,4 @@ dependencies {
 
     //google analytics
     api 'com.google.firebase:firebase-analytics-ktx:19.0.0'
-    api 'com.google.firebase:firebase-auth:21.0.1'
 }
