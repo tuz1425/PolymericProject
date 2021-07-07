@@ -1,6 +1,7 @@
 package com.tuz.aggregatepayment.model
 
 import android.net.Uri
+import com.google.android.gms.internal.`firebase-auth-api`.zzwq
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.FirebaseUserMetadata
@@ -28,8 +29,8 @@ class UserInfoModel(firUser: FirebaseUser?) {
     val anonymous: Boolean? = firUser?.isAnonymous
     val zza: FirebaseApp? = firUser?.zza()
     val zzb: FirebaseUser? = firUser?.zzb()
-
-    //val zzd = firUser.zzd()
+    @Suppress("MISSING_DEPENDENCY_CLASS")
+    val zzd: zzwq? = firUser?.zzd()
     val zze: String? = firUser?.zze()
     val zzf: String? = firUser?.zzf()
     val zzg: List<String>? = firUser?.zzg()
