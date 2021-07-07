@@ -37,20 +37,23 @@ dependencies {
     implementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     implementation 'androidx.test.espresso:espresso-core:3.3.0'
-
-    api platform('com.google.firebase:firebase-bom:28.1.0')
+    //enforcedPlatform 使用此方式会导致使用者studio需要重新依赖
+    //api enforcedPlatform('com.google.firebase:firebase-bom:28.1.0')
+    //导致多次引用
+    //api enforcedPlatform('com.google.firebase:firebase-bom:28.1.0')
+    api 'com.google.firebase:firebase-bom:28.1.0'
     //facebook
     api 'com.facebook.android:facebook-android-sdk:[8,9)'
     //google 支付
     api 'com.google.android.gms:play-services-wallet:18.1.2'
     //google 登录
-    api 'com.google.firebase:firebase-auth-ktx'
+    api 'com.google.firebase:firebase-auth-ktx:21.0.1'
     api 'com.google.android.gms:play-services-auth:19.0.0'
     //gson
     api 'com.squareup.retrofit2:converter-gson:2.9.0'
     api 'com.android.billingclient:billing:4.0.0'
 
     //google analytics
-    api 'com.google.firebase:firebase-analytics-ktx'
-    api 'com.google.firebase:firebase-auth'
+    api 'com.google.firebase:firebase-analytics-ktx:19.0.0'
+    api 'com.google.firebase:firebase-auth:21.0.1'
 }
