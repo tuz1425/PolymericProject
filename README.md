@@ -30,3 +30,13 @@
 # <h3>RequestListener</h3>
 > 接口,Builder内,不用像“interface”全部重写,按需求复写方法.
 
+# <h3>接入之前准备的事项</h3>
+# <h4>google-services.json获取</h4>
+> https://console.firebase.google.com/ 配置好内容。获取到.json文件放在app文件夹下</br>
+# <h4>project---gradle、app---gradle</h4>
+> 分别配置:</br>
+> :classpath 'com.google.gms:google-services:xxx'</br>
+> :id 'com.google.gms.google-services'
+# <h4>app---清单文件，需要配置firebase文档中内容</h4>
+
+
